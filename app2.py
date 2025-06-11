@@ -18,6 +18,9 @@ lung_model = joblib.load("models/lung_trained.pkl")
 
 st.markdown("""
     <style>
+    header[data-testid="stHeader"] {
+    display: none !important;
+    }
     /* === HEADER === */
     .app-header {
         background-color: #8B0000;
