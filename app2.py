@@ -252,7 +252,7 @@ with st.sidebar:
         }
     )
 
-If selected == 'Disease Prediction': 
+if selected == 'Disease Prediction': 
     # Create disease class and load ML model
     disease_model = DiseaseModel()
     disease_model.load_xgboost('models/xgboost_model.json')
