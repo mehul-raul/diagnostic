@@ -224,7 +224,7 @@ with st.sidebar:
     selected = option_menu(
         menu_title="Choose Assessment",
         options=[
-            'Disease Prediction',
+            'General Disease Prediction',
             'Diabetes Prediction',
             'Heart Disease Prediction',
             'Liver Prediction',
