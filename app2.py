@@ -5,6 +5,8 @@ st.set_page_config(
 )
 import pandas as pd
 import joblib
+from model_codes.DiseaseModel import DiseaseModel
+from model_codes.helper import prepare_symptoms_array
 from PIL import Image
 from streamlit_option_menu import option_menu
 
