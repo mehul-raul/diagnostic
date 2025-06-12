@@ -255,34 +255,47 @@ with st.sidebar:
     )
 
 if selected == 'Disease Prediction': 
-    # Create disease class and load ML model
+    # Load model
     disease_model = DiseaseModel()
     disease_model.load_xgboost('models/xgboost_model.json')
 
-    # Title
-    st.write('# Disease Prediction using Machine Learning')
+    # Page title
+    st.header("AI-Based General Disease Identifier")
 
-    symptoms = st.multiselect('What are your symptoms?', options=disease_model.all_symptoms)
+    # Symptom input
+    st.subheader("Select your symptoms below:")
+    selected_symptoms = st.multiselect(
+        "Symptoms", 
+        options=disease_model.all_symptoms,
+        help="Choose one or more symptoms you're currently experiencing."
+    )
 
-    X = prepare_symptoms_array(symptoms)
+    # Prepare input for model
+    input_vector = prepare_symptoms_array(selected_symptoms)
 
-    # Trigger XGBoost model
-    if st.button('Predict'): 
-        # Run the model with the python script
-        
-        prediction, prob = disease_model.predict(X)
-        st.write(f'## Disease: {prediction} with {prob*100:.2f}% probability')
+    # Predict button
+    if st.button("Analyze and Predict"):
+        # Run prediction
+        predicted_disease, confidence = disease_model.predict(input_vector)
 
+        st.markdown(f"""
+            ### 🧠 Prediction Result  
+            **Condition Detected:** `{predicted_disease}`  
+            **Confidence:** `{confidence*100:.2f}%`
+        """)
 
-        tab1, tab2= st.tabs(["Description", "Precautions"])
+        # Tabs for details
+        tab1, tab2 = st.tabs(["🧾 What it Means", "🛡️ Suggested Precautions"])
 
         with tab1:
-            st.write(disease_model.describe_predicted_disease())
+            st.info(disease_model.describe_predicted_disease())
 
         with tab2:
             precautions = disease_model.predicted_disease_precautions()
-            for i in range(4):
-                st.write(f'{i+1}. {precautions[i]}')
+            st.success("Here are some general precautions you can follow:")
+            for idx, tip in enumerate(precautions, 1):
+                st.write(f"**{idx}.** {tip}")
+
 
 # Sidebar menu with tiles
 # with st.sidebar:
