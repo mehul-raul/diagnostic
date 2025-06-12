@@ -254,7 +254,7 @@ with st.sidebar:
         }
     )
 
-if selected == 'Disease Prediction': 
+if selected == 'General Disease Prediction': 
     # Load model
     disease_model = DiseaseModel()
     disease_model.load_xgboost('models/xgboost_model.json')
