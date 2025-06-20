@@ -232,7 +232,7 @@ with st.sidebar:
             'Covid-19 Prediction',
             'Lung Cancer Prediction'
         ],
-        icons=['none','activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs'],
+        icons=['actvity','activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs'],
         menu_icon="cast",
         default_index=0,
         orientation="vertical",
