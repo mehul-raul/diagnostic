@@ -170,8 +170,6 @@ st.markdown("""
         font-size: 13px !important;
         font-weight: 600 !important;
     }
-    
-
     </style>
 
 """, unsafe_allow_html=True)
@@ -215,8 +213,6 @@ st.markdown("""
         <div class="header-desktop">TruDiagnosis — an all-in-one health diagnostic app</div>
         <div class="header-mobile">TruDiagnosis</div>
     </div>
-   
-
 """, unsafe_allow_html=True)
 
 
@@ -263,8 +259,6 @@ with st.sidebar:
             }
         }
     )
-
-
 
 if selected == 'General Disease Prediction': 
     # Load model
