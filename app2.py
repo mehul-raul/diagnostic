@@ -5,11 +5,24 @@ st.set_page_config(
 )
 
 st.markdown("""
-    <style>
-            [data-testid="stHeader"] {
-    background-color: rgba(0,0,0,0);
+<style>
+/* Nuclear option - hides everything except sidebar arrow */
+[data-testid="stToolbar"] {
+    background: transparent !important;
 }
-    </style>
+[data-testid="stToolbar"] > div:first-child {
+    display: none !important;
+}
+[data-testid="stToolbar"] > div:last-child {
+    visibility: hidden !important;
+}
+[data-testid="collapsedControl"] {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+}
+</style>
 """, unsafe_allow_html=True)
 
 
