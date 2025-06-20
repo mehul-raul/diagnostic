@@ -248,6 +248,7 @@ with st.sidebar:
     selected = option_menu(
         menu_title="Choose Assessment",
         options=[
+            'General Disease Prediction',
             'Diabetes Prediction',
             'Heart Disease Prediction',
             'Liver Prediction',
@@ -255,7 +256,7 @@ with st.sidebar:
             'Covid-19 Prediction',
             'Lung Cancer Prediction'
         ],
-        icons=['activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs'],
+        icons=['activity','activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs'],
         menu_icon="cast",
         default_index=0,
         orientation="vertical",
