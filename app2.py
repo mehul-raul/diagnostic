@@ -23,7 +23,7 @@ st.markdown("""
     display: block !important;
     position: relative !important;
     left: 20px !important;  /* Move right */
-    top: 10px !important;   /* Move down */
+    top: 30px !important;   /* Move down */
     color: #ffffff !important;  /* Pure white */
     opacity: 1 !important;
     z-index: 9999 !important;
