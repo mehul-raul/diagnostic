@@ -5,8 +5,6 @@ st.set_page_config(
 )
 import pandas as pd
 import joblib
-from model_codes.DiseaseModel import DiseaseModel
-from model_codes.helper import prepare_symptoms_array
 from PIL import Image
 from streamlit_option_menu import option_menu
 
@@ -20,9 +18,6 @@ lung_model = joblib.load("models/lung_trained.pkl")
 
 st.markdown("""
     <style>
-    header[data-testid="stHeader"] {
-    display: none !important;
-    }
     /* === HEADER === */
     .app-header {
         background-color: #8B0000;
@@ -224,7 +219,6 @@ with st.sidebar:
     selected = option_menu(
         menu_title="Choose Assessment",
         options=[
-            'General Disease Prediction',
             'Diabetes Prediction',
             'Heart Disease Prediction',
             'Liver Prediction',
@@ -232,7 +226,7 @@ with st.sidebar:
             'Covid-19 Prediction',
             'Lung Cancer Prediction'
         ],
-        icons=['actvity','activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs'],
+        icons=['activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs'],
         menu_icon="cast",
         default_index=0,
         orientation="vertical",
@@ -253,6 +247,7 @@ with st.sidebar:
             }
         }
     )
+
 
 if selected == 'General Disease Prediction': 
     # Load model
