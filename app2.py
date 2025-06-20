@@ -6,10 +6,9 @@ st.set_page_config(
 
 st.markdown("""
     <style>
-    /* Hide the top-right hamburger menu and footer, but NOT the sidebar itself */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    .stActionButton:hover {color: white;}
+        [data-testid="stToolbar"] {
+    display: none !important;
+}
     </style>
 """, unsafe_allow_html=True)
 
