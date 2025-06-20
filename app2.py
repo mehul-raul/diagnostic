@@ -3,21 +3,28 @@ st.set_page_config(
     page_title="TruDiagnosis",
     page_icon="healthcare.png",  
 )
-st.markdown("""
+
+
+hide_streamlit_style = """
     <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header {visibility: hidden;}
-        
-        /* Keep sidebar permanently expanded */
-        [data-testid="collapsedControl"] {
-            display: none;
+        /* Hide Streamlit's default top bar */
+        header[data-testid="stHeader"] {
+            display: none !important;
         }
-        [data-testid="stSidebar"] {
-            width: 300px !important;
+
+        /* Hide Streamlit's footer */
+        footer[data-testid="stFooter"] {
+            display: none !important;
+        }
+
+        /* Optional: reduce padding between top and content */
+        .block-container {
+            padding-top: 1rem !important;
         }
     </style>
-""", unsafe_allow_html=True)
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 
 import pandas as pd
 import joblib
