@@ -6,23 +6,23 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-/* Nuclear option - hides everything except sidebar arrow */
-[data-testid="stToolbar"] {
-    background: transparent !important;
+/* 1. Make header transparent */
+[data-testid="stHeader"] {
+    background-color: transparent !important;
 }
-[data-testid="stToolbar"] > div:first-child {
-    display: none !important;
-}
-[data-testid="stToolbar"] > div:last-child {
+
+/* 2. Hide ONLY the right-side toolbar icons */
+[data-testid="stToolbarActions"] {
     visibility: hidden !important;
 }
+
+/* 3. Protect the sidebar arrow */
 [data-testid="collapsedControl"] {
     display: block !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
+    left: 0px !important;
+    z-index: 999999 !important;
 }
-</style>
+
 """, unsafe_allow_html=True)
 
 
