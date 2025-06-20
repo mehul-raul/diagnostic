@@ -25,38 +25,6 @@ import pandas as pd
 import joblib
 from PIL import Image
 from streamlit_option_menu import option_menu
-with st.sidebar:
-    selected = option_menu(
-        menu_title="Choose Assessment",
-        options=[
-            'Diabetes Prediction',
-            'Heart Disease Prediction',
-            'Liver Prediction',
-            'Breast Cancer Prediction',
-            'Covid-19 Prediction',
-            'Lung Cancer Prediction'
-        ],
-        icons=['activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs'],
-        menu_icon="cast",
-        default_index=0,
-        orientation="vertical",
-        styles={
-            "container": {"padding": "5px", "background-color": "#581818"},
-            "icon": {"color": "#ffffff", "font-size": "20px"},
-            "nav-link": {
-                "font-size": "16px",
-                "text-align": "left",
-                "margin": "5px",
-                "color": "#ffffff",
-                "border-radius": "8px"
-            },
-            "nav-link-selected": {
-                "background-color": "#943131",
-                "font-weight": "bold",
-                "color": "#ffffff"
-            }
-        }
-    )
 
 # Load models
 diabetes_model = joblib.load("models/diabetes_model.sav")
