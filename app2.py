@@ -161,6 +161,21 @@ st.markdown("""
         font-size: 13px !important;
         font-weight: 600 !important;
     }
+    
+    /* Hide Streamlit Cloud's top right toolbar (Share, GitHub, etc) */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    
+    /* Hide full Streamlit toolbar completely */
+    [data-testid="stHeader"] {
+        background-color: rgba(0,0,0,0);
+    }
+    
+    .css-18ni7ap.e8zbici2 {  /* Sometimes Streamlit Cloud toolbar class */
+        visibility: hidden !important;
+        display: none !important;
+    }
     </style>
 
 """, unsafe_allow_html=True)
@@ -205,23 +220,6 @@ st.markdown("""
         <div class="header-mobile">TruDiagnosis</div>
     </div>
    
-
-    /* Hide Streamlit Cloud's top right toolbar (Share, GitHub, etc) */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    
-    /* Hide full Streamlit toolbar completely */
-    [data-testid="stHeader"] {
-        background-color: rgba(0,0,0,0);
-    }
-    
-    .css-18ni7ap.e8zbici2 {  /* Sometimes Streamlit Cloud toolbar class */
-        visibility: hidden !important;
-        display: none !important;
-    }
-
-
 
 """, unsafe_allow_html=True)
 
