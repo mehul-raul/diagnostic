@@ -3,24 +3,6 @@ st.set_page_config(
     page_title="TruDiagnosis",
     page_icon="healthcare.png",  
 )
-st.markdown("""
-    <style>
-        /* Hides the top Streamlit bar (Share, etc.) */
-        header[data-testid="stHeader"] {
-            display: none !important;
-        }
-
-        /* Hides the Streamlit footer */
-        footer[data-testid="stFooter"] {
-            display: none !important;
-        }
-
-        /* Optional: tighten layout spacing */
-        .block-container {
-            padding-top: 1rem !important;
-        }
-    </style>
-""", unsafe_allow_html=True)
 import pandas as pd
 import joblib
 from PIL import Image
