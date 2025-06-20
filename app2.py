@@ -4,25 +4,14 @@ st.set_page_config(
     page_icon="healthcare.png",  
 )
 
-hide_streamlit_style = """
+st.markdown("""
     <style>
-        /* Hide the default Streamlit header (top black bar) */
-        header[data-testid="stHeader"] {
-            display: none;
-        }
-
-        /* Hide the footer */
-        footer[data-testid="stFooter"] {
-            visibility: hidden;
-        }
-
-        /* Optional: adjust padding */
-        .block-container {
-            padding-top: 1rem;
-        }
+        /* Hide the top Streamlit navbar */
+        #MainMenu {visibility: hidden;}
+        header {visibility: hidden;}
+        footer {visibility: hidden;}
     </style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 import pandas as pd
 import joblib
@@ -179,7 +168,6 @@ st.markdown("""
         font-size: 13px !important;
         font-weight: 600 !important;
     }
-    
     </style>
 
 """, unsafe_allow_html=True)
