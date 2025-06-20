@@ -3,20 +3,60 @@ st.set_page_config(
     page_title="TruDiagnosis",
     page_icon="healthcare.png",  
 )
-
 st.markdown("""
     <style>
-        /* Hide the top Streamlit navbar */
-        #MainMenu {visibility: hidden;}
-        header {visibility: hidden;}
-        footer {visibility: hidden;}
+        /* Hides the top Streamlit bar (Share, etc.) */
+        header[data-testid="stHeader"] {
+            display: none !important;
+        }
+
+        /* Hides the Streamlit footer */
+        footer[data-testid="stFooter"] {
+            display: none !important;
+        }
+
+        /* Optional: tighten layout spacing */
+        .block-container {
+            padding-top: 1rem !important;
+        }
     </style>
 """, unsafe_allow_html=True)
-
 import pandas as pd
 import joblib
 from PIL import Image
 from streamlit_option_menu import option_menu
+with st.sidebar:
+    selected = option_menu(
+        menu_title="Choose Assessment",
+        options=[
+            'Diabetes Prediction',
+            'Heart Disease Prediction',
+            'Liver Prediction',
+            'Breast Cancer Prediction',
+            'Covid-19 Prediction',
+            'Lung Cancer Prediction'
+        ],
+        icons=['activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs'],
+        menu_icon="cast",
+        default_index=0,
+        orientation="vertical",
+        styles={
+            "container": {"padding": "5px", "background-color": "#581818"},
+            "icon": {"color": "#ffffff", "font-size": "20px"},
+            "nav-link": {
+                "font-size": "16px",
+                "text-align": "left",
+                "margin": "5px",
+                "color": "#ffffff",
+                "border-radius": "8px"
+            },
+            "nav-link-selected": {
+                "background-color": "#943131",
+                "font-weight": "bold",
+                "color": "#ffffff"
+            }
+        }
+    )
 
 # Load models
 diabetes_model = joblib.load("models/diabetes_model.sav")
