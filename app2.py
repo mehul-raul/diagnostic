@@ -3,7 +3,12 @@ st.set_page_config(
     page_title="TruDiagnosis",
     page_icon="healthcare.png",  
 )
-
+st.markdown("""
+    <style>
+        #MainMenu {visibility: hidden;}
+        
+    </style>
+""", unsafe_allow_html=True)
 
 
 import pandas as pd
@@ -250,14 +255,7 @@ with st.sidebar:
             }
         }
     )
-st.markdown("""
-    <style>
-        /* Hide the top Streamlit navbar */
-        #MainMenu {visibility: hidden;}
-        header {visibility: hidden;}
-        footer {visibility: hidden;}
-    </style>
-""", unsafe_allow_html=True)
+
 
 if selected == 'General Disease Prediction': 
     # Load model
