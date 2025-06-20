@@ -159,27 +159,6 @@ st.markdown("""
         font-weight: 600 !important;
     }
     
-     /* Keep your existing hidden elements */
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header {visibility: hidden;}
-        
-        /* NEW: Ensure sidebar remains accessible */
-        [data-testid="stSidebar"] {
-            width: auto !important;
-        }
-        [data-testid="stSidebar"][aria-expanded="false"] {
-            margin-left: -300px;
-        }
-        [data-testid="stSidebar"][aria-expanded="true"] {
-            margin-left: 0px;
-        }
-        [data-testid="collapsedControl"] {
-            display: block !important;
-            left: 0px !important;
-        }
-
-
     </style>
 
 """, unsafe_allow_html=True)
