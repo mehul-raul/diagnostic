@@ -160,10 +160,12 @@ st.markdown("""
     }
     
     
-        /* === Hides the Streamlit top toolbar === */
+       /* Hide Streamlit's default menu and footer */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
-        header {visibility: hidden;}
+
+        /* Instead of hiding header entirely, move it up */
+        header {height: 0px; visibility: hidden; position: absolute; top: -100px;}
 
 
     </style>
