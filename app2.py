@@ -159,13 +159,25 @@ st.markdown("""
         font-weight: 600 !important;
     }
     
-    
-       /* Hide Streamlit's default menu and footer */
+     /* Keep your existing hidden elements */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
-
-        /* Instead of hiding header entirely, move it up */
-        header {height: 0px; visibility: hidden; position: absolute; top: -100px;}
+        header {visibility: hidden;}
+        
+        /* NEW: Ensure sidebar remains accessible */
+        [data-testid="stSidebar"] {
+            width: auto !important;
+        }
+        [data-testid="stSidebar"][aria-expanded="false"] {
+            margin-left: -300px;
+        }
+        [data-testid="stSidebar"][aria-expanded="true"] {
+            margin-left: 0px;
+        }
+        [data-testid="collapsedControl"] {
+            display: block !important;
+            left: 0px !important;
+        }
 
 
     </style>
