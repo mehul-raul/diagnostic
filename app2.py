@@ -158,14 +158,13 @@ st.markdown("""
         font-size: 13px !important;
         font-weight: 600 !important;
     }
-    st.markdown("""
-    <style>
-        /* Hides the Streamlit top toolbar */
+    
+    
+        /* === Hides the Streamlit top toolbar === */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         header {visibility: hidden;}
-    </style>
-""", unsafe_allow_html=True)
+
 
     </style>
 
