@@ -6,8 +6,8 @@ st.set_page_config(
 
 st.markdown("""
     <style>
-        [data-testid="stToolbar"] {
-    display: none !important;
+            [data-testid="stHeader"] {
+    background-color: rgba(0,0,0,0);
 }
     </style>
 """, unsafe_allow_html=True)
