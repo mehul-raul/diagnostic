@@ -4,14 +4,7 @@ st.set_page_config(
     page_icon="healthcare.png",  
 )
 
-st.markdown("""
-    <style>
-        /* Hide the top Streamlit navbar */
-        #MainMenu {visibility: hidden;}
-        header {visibility: hidden;}
-        footer {visibility: hidden;}
-    </style>
-""", unsafe_allow_html=True)
+
 
 import pandas as pd
 import joblib
