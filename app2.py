@@ -11,19 +11,33 @@ st.markdown("""
     background-color: transparent !important;
 }
 
-/* 2. Hide ALL right-side elements (including 3-dot menu) */
+/* 2. Hide all right-side elements */
 [data-testid="stToolbarActions"], 
 [data-testid="baseButton-headerNoPadding"],
 [data-testid="stDecoration"] {
     display: none !important;
 }
 
-/* 3. Protect and position the sidebar arrow */
+/* 3. Customize the sidebar arrow */
 [data-testid="collapsedControl"] {
     display: block !important;
-    position: absolute !important;
-    left: 0px !important;
+    position: relative !important;
+    left: 20px !important;  /* Move right */
+    top: 10px !important;   /* Move down */
+    color: #ffffff !important;  /* Pure white */
+    opacity: 1 !important;
     z-index: 9999 !important;
+    background-color: rgba(0,0,0,0.3) !important;  /* Darker background */
+    border-radius: 4px !important;
+    padding: 6px !important;
+    width: 30px !important;
+    height: 30px !important;
+}
+
+/* Hover effect */
+[data-testid="collapsedControl"]:hover {
+    background-color: rgba(0,0,0,0.5) !important;
+    color: #ffffff !important;
 }
 
 /* 4. Hide other Streamlit elements */
@@ -31,7 +45,6 @@ st.markdown("""
 footer {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
-
 
 import pandas as pd
 import joblib
