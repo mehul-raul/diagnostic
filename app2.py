@@ -209,15 +209,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# # === Sidebar ===
-# selected = st.sidebar.radio("Choose Assessment:", [
-#     'Diabetes Prediction',
-#     'Heart Disease Prediction',
-#     'Liver Prediction',
-#     'Breast Cancer Prediction',
-#     'Covid-19 Prediction',
-#     'Lung Cancer Prediction'
-# ])
+# === Sidebar ===
+selected = st.sidebar.radio("Choose Assessment:", [
+    'Diabetes Prediction',
+    'Heart Disease Prediction',
+    'Liver Prediction',
+    'Breast Cancer Prediction',
+    'Covid-19 Prediction',
+    'Lung Cancer Prediction'
+])
 
 
 with st.sidebar:
