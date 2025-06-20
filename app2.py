@@ -6,23 +6,11 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-/* 1. Make header transparent */
-[data-testid="stHeader"] {
-    background-color: transparent !important;
+/* Hide EVERYTHING in toolbar except sidebar arrow */
+[data-testid="stToolbar"] > :not([data-testid="collapsedControl"]) {
+    display: none !important;
 }
-
-/* 2. Hide ONLY the right-side toolbar icons */
-[data-testid="stToolbarActions"] {
-    visibility: hidden !important;
-}
-
-/* 3. Protect the sidebar arrow */
-[data-testid="collapsedControl"] {
-    display: block !important;
-    left: 0px !important;
-    z-index: 999999 !important;
-}
-
+</style>
 """, unsafe_allow_html=True)
 
 
