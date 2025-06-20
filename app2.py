@@ -6,10 +6,29 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-/* Hide EVERYTHING in toolbar except sidebar arrow */
-[data-testid="stToolbar"] > :not([data-testid="collapsedControl"]) {
+/* 1. Make header transparent */
+[data-testid="stHeader"] {
+    background-color: transparent !important;
+}
+
+/* 2. Hide ALL right-side elements (including 3-dot menu) */
+[data-testid="stToolbarActions"], 
+[data-testid="baseButton-headerNoPadding"],
+[data-testid="stDecoration"] {
     display: none !important;
 }
+
+/* 3. Protect and position the sidebar arrow */
+[data-testid="collapsedControl"] {
+    display: block !important;
+    position: absolute !important;
+    left: 0px !important;
+    z-index: 9999 !important;
+}
+
+/* 4. Hide other Streamlit elements */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
