@@ -4,27 +4,14 @@ st.set_page_config(
     page_icon="healthcare.png",  
 )
 
-
-hide_streamlit_style = """
+st.markdown("""
     <style>
-        /* Hide Streamlit's default top bar */
-        header[data-testid="stHeader"] {
-            display: none !important;
-        }
-
-        /* Hide Streamlit's footer */
-        footer[data-testid="stFooter"] {
-            display: none !important;
-        }
-
-        /* Optional: reduce padding between top and content */
-        .block-container {
-            padding-top: 1rem !important;
-        }
+        /* Hide the top Streamlit navbar */
+        #MainMenu {visibility: hidden;}
+        header {visibility: hidden;}
+        footer {visibility: hidden;}
     </style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
+""", unsafe_allow_html=True)
 
 import pandas as pd
 import joblib
@@ -270,6 +257,42 @@ with st.sidebar:
             }
         }
     )
+
+
+
+# Sidebar menu with tiles
+# with st.sidebar:
+#     selected = option_menu(
+#         menu_title="Choose Assessment",
+#         options=[
+#             'Diabetes Prediction',
+#             'Heart Disease Prediction',
+#             'Liver Prediction',
+#             'Breast Cancer Prediction',
+#             'Covid-19 Prediction',
+#             'Lung Cancer Prediction'
+#         ],
+#         icons=['activity', 'heart-pulse', 'droplet', 'female', 'virus', 'lungs'],
+#         menu_icon="cast",
+#         default_index=0,
+#         orientation="vertical",
+#         styles={
+#             "container": {"padding": "5px", "background-color": "#003366"},
+#             "icon": {"color": "#ffffff", "font-size": "20px"},
+#             "nav-link": {
+#                 "font-size": "16px",
+#                 "text-align": "left",
+#                 "margin": "5px",
+#                 "color": "#ffffff",
+#                 "border-radius": "8px"
+#             },
+#             "nav-link-selected": {
+#                 "background-color": "#005eb8",
+#                 "font-weight": "bold",
+#                 "color": "#ffffff"
+#             }
+#         }
+#     )
 
 
 if selected == 'General Disease Prediction': 
