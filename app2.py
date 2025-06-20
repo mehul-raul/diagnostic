@@ -5,11 +5,19 @@ st.set_page_config(
 )
 st.markdown("""
     <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
         
-         header {visibility: hidden;}
+        /* Keep sidebar permanently expanded */
+        [data-testid="collapsedControl"] {
+            display: none;
+        }
+        [data-testid="stSidebar"] {
+            width: 300px !important;
+        }
     </style>
 """, unsafe_allow_html=True)
-
 
 import pandas as pd
 import joblib
