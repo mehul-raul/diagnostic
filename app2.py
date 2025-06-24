@@ -659,7 +659,7 @@ elif selected == 'Lung Cancer Prediction':
 
 if selected == 'Pneumonia Prediction':
     st.header("Pneumonia Prediction from Xray Image")
-     st.subheader("COMING SOON :)")
+    st.subheader("COMING SOON :)")
     
 
 st.markdown("""
