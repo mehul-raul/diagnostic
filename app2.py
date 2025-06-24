@@ -255,9 +255,11 @@ with st.sidebar:
             'Liver Prediction',
             'Breast Cancer Prediction',
             'Covid-19 Prediction',
-            'Lung Cancer Prediction'
+            'Lung Cancer Prediction',
+            'Pneumonia Prediction'
+            
         ],
-        icons=['activity','activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs'],
+        icons=['activity','activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs','lungs'],
         menu_icon="cast",
         default_index=0,
         orientation="vertical",
@@ -655,7 +657,10 @@ elif selected == 'Lung Cancer Prediction':
         except:
             st.error("❌ Please check inputs.")
 
-
+if selected == 'Pneumonia Prediction':
+    st.header("Pneumonia Prediction from Xray Image")
+     st.subheader("COMING SOON :)")
+    
 
 st.markdown("""
     <div style="
