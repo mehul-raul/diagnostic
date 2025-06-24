@@ -253,13 +253,13 @@ with st.sidebar:
             'Diabetes Prediction',
             'Heart Disease Prediction',
             'Liver Prediction',
+            'Lung Cancer Prediction',
             'Breast Cancer Prediction',
             'Covid-19 Prediction',
-            'Lung Cancer Prediction',
             'Pneumonia Prediction'
             
         ],
-        icons=['activity','activity', 'heart-pulse', 'droplet', 'heart', 'virus', 'lungs','lungs'],
+        icons=['activity','activity', 'heart-pulse', 'droplet','lungs', 'heart', 'virus', 'lungs'],
         menu_icon="cast",
         default_index=0,
         orientation="vertical",
