@@ -664,7 +664,7 @@ elif selected == 'Breast Cancer Prediction':
         fractal_dimension_worst = st.slider("Fractal Dimension Worst", 0.01, 0.2, 0.1)
 
     # Prediction section
-     if st.button("Predict Breast Cancer"):
+    if st.button("Predict Breast Cancer"):
         try:
             # 1. Prepare input dictionary directly (NO eval())
             input_dict = {
