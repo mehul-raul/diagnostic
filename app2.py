@@ -491,238 +491,118 @@ elif selected == 'Liver Prediction':
 
 
 # ========== BREAST CANCER ==========
-# elif selected == 'Breast Cancer Prediction':
-#     st.title("Breast Cancer Prediction")
-#     image = Image.open('d.jpg')
-#     st.image(image)
-#     # Columns
-#     # No inputs from the user
-#     col1, col2, col3 = st.columns(3)
-
-#     with col1:
-#         radius_mean = st.slider("Enter your Radius Mean", 6.0, 30.0, 15.0)
-#         texture_mean = st.slider("Enter your Texture Mean", 9.0, 40.0, 20.0)
-#         perimeter_mean = st.slider("Enter your Perimeter Mean", 43.0, 190.0, 90.0)
-
-#     with col2:
-#         area_mean = st.slider("Enter your Area Mean", 143.0, 2501.0, 750.0)
-#         smoothness_mean = st.slider("Enter your Smoothness Mean", 0.05, 0.25, 0.1)
-#         compactness_mean = st.slider("Enter your Compactness Mean", 0.02, 0.3, 0.15)
-
-#     with col3:
-#         concavity_mean = st.slider("Enter your Concavity Mean", 0.0, 0.5, 0.2)
-#         concave_points_mean = st.slider("Enter your Concave Points Mean", 0.0, 0.2, 0.1)
-#         symmetry_mean = st.slider("Enter your Symmetry Mean", 0.1, 1.0, 0.5)
-
-#     with col1:
-#         fractal_dimension_mean = st.slider("Enter your Fractal Dimension Mean", 0.01, 0.1, 0.05)
-#         radius_se = st.slider("Enter your Radius SE", 0.1, 3.0, 1.0)
-#         texture_se = st.slider("Enter your Texture SE", 0.2, 2.0, 1.0)
-
-#     with col2:
-#         perimeter_se = st.slider("Enter your Perimeter SE", 1.0, 30.0, 10.0)
-#         area_se = st.slider("Enter your Area SE", 6.0, 500.0, 150.0)
-#         smoothness_se = st.slider("Enter your Smoothness SE", 0.001, 0.03, 0.01)
-
-#     with col3:
-#         compactness_se = st.slider("Enter your Compactness SE", 0.002, 0.2, 0.1)
-#         concavity_se = st.slider("Enter your Concavity SE", 0.0, 0.05, 0.02)
-#         concave_points_se = st.slider("Enter your Concave Points SE", 0.0, 0.03, 0.01)
-
-#     with col1:
-#         symmetry_se = st.slider("Enter your Symmetry SE", 0.1, 1.0, 0.5)
-#         fractal_dimension_se = st.slider("Enter your Fractal Dimension SE", 0.01, 0.1, 0.05)
-
-#     with col2:
-#         radius_worst = st.slider("Enter your Radius Worst", 7.0, 40.0, 20.0)
-#         texture_worst = st.slider("Enter your Texture Worst", 12.0, 50.0, 25.0)
-#         perimeter_worst = st.slider("Enter your Perimeter Worst", 50.0, 250.0, 120.0)
-
-#     with col3:
-#         area_worst = st.slider("Enter your Area Worst", 185.0, 4250.0, 1500.0)
-#         smoothness_worst = st.slider("Enter your Smoothness Worst", 0.07, 0.3, 0.15)
-#         compactness_worst = st.slider("Enter your Compactness Worst", 0.03, 0.6, 0.3)
-
-#     with col1:
-#         concavity_worst = st.slider("Enter your Concavity Worst", 0.0, 0.8, 0.4)
-#         concave_points_worst = st.slider("Enter your Concave Points Worst", 0.0, 0.2, 0.1)
-#         symmetry_worst = st.slider("Enter your Symmetry Worst", 0.1, 1.0, 0.5)
-
-#     with col2:
-#         fractal_dimension_worst = st.slider("Enter your Fractal Dimension Worst", 0.01, 0.2, 0.1)
-
-#         # Code for prediction
-#     breast_cancer_result = ''
-
-#     # Button
-#     if st.button("Predict Breast Cancer"):
-#         # Create a DataFrame with user inputs
-#         user_input = pd.DataFrame({
-#             'radius_mean': [radius_mean],
-#             'texture_mean': [texture_mean],
-#             'perimeter_mean': [perimeter_mean],
-#             'area_mean': [area_mean],
-#             'smoothness_mean': [smoothness_mean],
-#             'compactness_mean': [compactness_mean],
-#             'concavity_mean': [concavity_mean],
-#             'concave points_mean': [concave_points_mean],  # Update this line
-#             'symmetry_mean': [symmetry_mean],
-#             'fractal_dimension_mean': [fractal_dimension_mean],
-#             'radius_se': [radius_se],
-#             'texture_se': [texture_se],
-#             'perimeter_se': [perimeter_se],
-#             'area_se': [area_se],
-#             'smoothness_se': [smoothness_se],
-#             'compactness_se': [compactness_se],
-#             'concavity_se': [concavity_se],
-#             'concave points_se': [concave_points_se],  # Update this line
-#             'symmetry_se': [symmetry_se],
-#             'fractal_dimension_se': [fractal_dimension_se],
-#             'radius_worst': [radius_worst],
-#             'texture_worst': [texture_worst],
-#             'perimeter_worst': [perimeter_worst],
-#             'area_worst': [area_worst],
-#             'smoothness_worst': [smoothness_worst],
-#             'compactness_worst': [compactness_worst],
-#             'concavity_worst': [concavity_worst],
-#             'concave points_worst': [concave_points_worst],  # Update this line
-#             'symmetry_worst': [symmetry_worst],
-#             'fractal_dimension_worst': [fractal_dimension_worst],
-#         })
-#         breast_cancer_model = joblib.load("models/breast_cancer_pb_model.sav")
-#         # Perform prediction
-#         breast_cancer_prediction = breast_cancer_model.predict(user_input)
-#         # Display result
-#         if breast_cancer_prediction[0] == 1:
-#             image = Image.open('positive.png')
-#             st.image(image, caption='')
-#             breast_cancer_result = "The model predicts that you have Breast Cancer."
-#         else:
-#             image = Image.open('negative.png')
-#             st.image(image, caption='')
-#             breast_cancer_result = "The model predicts that you don't have Breast Cancer."
-
-#         st.success(breast_cancer_result)
 elif selected == 'Breast Cancer Prediction':
     st.title("Breast Cancer Prediction")
     image = Image.open('d.jpg')
     st.image(image)
-    
-    # Columns layout
+    # Columns
+    # No inputs from the user
     col1, col2, col3 = st.columns(3)
-    
+
     with col1:
-        radius_mean = st.slider("Radius Mean", 6.0, 30.0, 15.0)
-        texture_mean = st.slider("Texture Mean", 9.0, 40.0, 20.0)
-        perimeter_mean = st.slider("Perimeter Mean", 43.0, 190.0, 90.0)
-        area_mean = st.slider("Area Mean", 143.0, 2501.0, 750.0)
-        smoothness_mean = st.slider("Smoothness Mean", 0.05, 0.25, 0.1)
-        compactness_mean = st.slider("Compactness Mean", 0.02, 0.3, 0.15)
-        concavity_mean = st.slider("Concavity Mean", 0.0, 0.5, 0.2)
-        concave_points_mean = st.slider("Concave Points Mean", 0.0, 0.2, 0.1)
-        symmetry_mean = st.slider("Symmetry Mean", 0.1, 1.0, 0.5)
-        fractal_dimension_mean = st.slider("Fractal Dimension Mean", 0.01, 0.1, 0.05)
+        radius_mean = st.slider("Enter your Radius Mean", 6.0, 30.0, 15.0)
+        texture_mean = st.slider("Enter your Texture Mean", 9.0, 40.0, 20.0)
+        perimeter_mean = st.slider("Enter your Perimeter Mean", 43.0, 190.0, 90.0)
 
     with col2:
-        radius_se = st.slider("Radius SE", 0.1, 3.0, 1.0)
-        texture_se = st.slider("Texture SE", 0.2, 2.0, 1.0)
-        perimeter_se = st.slider("Perimeter SE", 1.0, 30.0, 10.0)
-        area_se = st.slider("Area SE", 6.0, 500.0, 150.0)
-        smoothness_se = st.slider("Smoothness SE", 0.001, 0.03, 0.01)
-        compactness_se = st.slider("Compactness SE", 0.002, 0.2, 0.1)
-        concavity_se = st.slider("Concavity SE", 0.0, 0.05, 0.02)
-        concave_points_se = st.slider("Concave Points SE", 0.0, 0.03, 0.01)
-        symmetry_se = st.slider("Symmetry SE", 0.1, 1.0, 0.5)
-        fractal_dimension_se = st.slider("Fractal Dimension SE", 0.01, 0.1, 0.05)
+        area_mean = st.slider("Enter your Area Mean", 143.0, 2501.0, 750.0)
+        smoothness_mean = st.slider("Enter your Smoothness Mean", 0.05, 0.25, 0.1)
+        compactness_mean = st.slider("Enter your Compactness Mean", 0.02, 0.3, 0.15)
 
     with col3:
-        radius_worst = st.slider("Radius Worst", 7.0, 40.0, 20.0)
-        texture_worst = st.slider("Texture Worst", 12.0, 50.0, 25.0)
-        perimeter_worst = st.slider("Perimeter Worst", 50.0, 250.0, 120.0)
-        area_worst = st.slider("Area Worst", 185.0, 4250.0, 1500.0)
-        smoothness_worst = st.slider("Smoothness Worst", 0.07, 0.3, 0.15)
-        compactness_worst = st.slider("Compactness Worst", 0.03, 0.6, 0.3)
-        concavity_worst = st.slider("Concavity Worst", 0.0, 0.8, 0.4)
-        concave_points_worst = st.slider("Concave Points Worst", 0.0, 0.2, 0.1)
-        symmetry_worst = st.slider("Symmetry Worst", 0.1, 1.0, 0.5)
-        fractal_dimension_worst = st.slider("Fractal Dimension Worst", 0.01, 0.2, 0.1)
+        concavity_mean = st.slider("Enter your Concavity Mean", 0.0, 0.5, 0.2)
+        concave_points_mean = st.slider("Enter your Concave Points Mean", 0.0, 0.2, 0.1)
+        symmetry_mean = st.slider("Enter your Symmetry Mean", 0.1, 1.0, 0.5)
 
+    with col1:
+        fractal_dimension_mean = st.slider("Enter your Fractal Dimension Mean", 0.01, 0.1, 0.05)
+        radius_se = st.slider("Enter your Radius SE", 0.1, 3.0, 1.0)
+        texture_se = st.slider("Enter your Texture SE", 0.2, 2.0, 1.0)
+
+    with col2:
+        perimeter_se = st.slider("Enter your Perimeter SE", 1.0, 30.0, 10.0)
+        area_se = st.slider("Enter your Area SE", 6.0, 500.0, 150.0)
+        smoothness_se = st.slider("Enter your Smoothness SE", 0.001, 0.03, 0.01)
+
+    with col3:
+        compactness_se = st.slider("Enter your Compactness SE", 0.002, 0.2, 0.1)
+        concavity_se = st.slider("Enter your Concavity SE", 0.0, 0.05, 0.02)
+        concave_points_se = st.slider("Enter your Concave Points SE", 0.0, 0.03, 0.01)
+
+    with col1:
+        symmetry_se = st.slider("Enter your Symmetry SE", 0.1, 1.0, 0.5)
+        fractal_dimension_se = st.slider("Enter your Fractal Dimension SE", 0.01, 0.1, 0.05)
+
+    with col2:
+        radius_worst = st.slider("Enter your Radius Worst", 7.0, 40.0, 20.0)
+        texture_worst = st.slider("Enter your Texture Worst", 12.0, 50.0, 25.0)
+        perimeter_worst = st.slider("Enter your Perimeter Worst", 50.0, 250.0, 120.0)
+
+    with col3:
+        area_worst = st.slider("Enter your Area Worst", 185.0, 4250.0, 1500.0)
+        smoothness_worst = st.slider("Enter your Smoothness Worst", 0.07, 0.3, 0.15)
+        compactness_worst = st.slider("Enter your Compactness Worst", 0.03, 0.6, 0.3)
+
+    with col1:
+        concavity_worst = st.slider("Enter your Concavity Worst", 0.0, 0.8, 0.4)
+        concave_points_worst = st.slider("Enter your Concave Points Worst", 0.0, 0.2, 0.1)
+        symmetry_worst = st.slider("Enter your Symmetry Worst", 0.1, 1.0, 0.5)
+
+    with col2:
+        fractal_dimension_worst = st.slider("Enter your Fractal Dimension Worst", 0.01, 0.2, 0.1)
+
+        # Code for prediction
+    breast_cancer_result = ''
+
+    # Button
     if st.button("Predict Breast Cancer"):
-        try:
-            # Define feature order explicitly
-            feature_order = [
-                'radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean',
-                'smoothness_mean', 'compactness_mean', 'concavity_mean',
-                'concave points_mean', 'symmetry_mean', 'fractal_dimension_mean',
-                'radius_se', 'texture_se', 'perimeter_se', 'area_se',
-                'smoothness_se', 'compactness_se', 'concavity_se',
-                'concave points_se', 'symmetry_se', 'fractal_dimension_se',
-                'radius_worst', 'texture_worst', 'perimeter_worst', 'area_worst',
-                'smoothness_worst', 'compactness_worst', 'concavity_worst',
-                'concave points_worst', 'symmetry_worst', 'fractal_dimension_worst'
-            ]
+        # Create a DataFrame with user inputs
+        user_input = pd.DataFrame({
+            'radius_mean': [radius_mean],
+            'texture_mean': [texture_mean],
+            'perimeter_mean': [perimeter_mean],
+            'area_mean': [area_mean],
+            'smoothness_mean': [smoothness_mean],
+            'compactness_mean': [compactness_mean],
+            'concavity_mean': [concavity_mean],
+            'concave points_mean': [concave_points_mean],  # Update this line
+            'symmetry_mean': [symmetry_mean],
+            'fractal_dimension_mean': [fractal_dimension_mean],
+            'radius_se': [radius_se],
+            'texture_se': [texture_se],
+            'perimeter_se': [perimeter_se],
+            'area_se': [area_se],
+            'smoothness_se': [smoothness_se],
+            'compactness_se': [compactness_se],
+            'concavity_se': [concavity_se],
+            'concave points_se': [concave_points_se],  # Update this line
+            'symmetry_se': [symmetry_se],
+            'fractal_dimension_se': [fractal_dimension_se],
+            'radius_worst': [radius_worst],
+            'texture_worst': [texture_worst],
+            'perimeter_worst': [perimeter_worst],
+            'area_worst': [area_worst],
+            'smoothness_worst': [smoothness_worst],
+            'compactness_worst': [compactness_worst],
+            'concavity_worst': [concavity_worst],
+            'concave points_worst': [concave_points_worst],  # Update this line
+            'symmetry_worst': [symmetry_worst],
+            'fractal_dimension_worst': [fractal_dimension_worst],
+        })
+        breast_cancer_model = joblib.load("models/breast_cancer_new.sav")
+        # Perform prediction
+        breast_cancer_prediction = breast_cancer_model.predict(user_input)
+        # Display result
+        if breast_cancer_prediction[0] == 1:
+            image = Image.open('positive.png')
+            st.image(image, caption='')
+            breast_cancer_result = "The model predicts that you have Breast Cancer."
+        else:
+            image = Image.open('negative.png')
+            st.image(image, caption='')
+            breast_cancer_result = "The model predicts that you don't have Breast Cancer."
 
-            # Prepare input dictionary
-            input_data = {
-                'radius_mean': [radius_mean],
-                'texture_mean': [texture_mean],
-                'perimeter_mean': [perimeter_mean],
-                'area_mean': [area_mean],
-                'smoothness_mean': [smoothness_mean],
-                'compactness_mean': [compactness_mean],
-                'concavity_mean': [concavity_mean],
-                'concave points_mean': [concave_points_mean],
-                'symmetry_mean': [symmetry_mean],
-                'fractal_dimension_mean': [fractal_dimension_mean],
-                'radius_se': [radius_se],
-                'texture_se': [texture_se],
-                'perimeter_se': [perimeter_se],
-                'area_se': [area_se],
-                'smoothness_se': [smoothness_se],
-                'compactness_se': [compactness_se],
-                'concavity_se': [concavity_se],
-                'concave points_se': [concave_points_se],
-                'symmetry_se': [symmetry_se],
-                'fractal_dimension_se': [fractal_dimension_se],
-                'radius_worst': [radius_worst],
-                'texture_worst': [texture_worst],
-                'perimeter_worst': [perimeter_worst],
-                'area_worst': [area_worst],
-                'smoothness_worst': [smoothness_worst],
-                'compactness_worst': [compactness_worst],
-                'concavity_worst': [concavity_worst],
-                'concave points_worst': [concave_points_worst],
-                'symmetry_worst': [symmetry_worst],
-                'fractal_dimension_worst': [fractal_dimension_worst]
-            }
-
-            # Create DataFrame ensuring correct column order
-            import pandas as pd
-            user_input = pd.DataFrame(input_data)[feature_order]
-            
-            # Load model with compatibility fix
-            import numpy as np
-            import joblib
-            if not hasattr(np.random, 'MT19937'):
-                np.random.MT19937 = lambda: np.random.Generator(np.random.MT19937())
-            
-            model = joblib.load("models/breast_cancer_pb_model.sav")
-            
-            # Predict
-            prediction = model.predict(user_input)
-            probability = model.predict_proba(user_input)[0][1]
-            
-            # Display results
-            if prediction[0] == 1:
-                st.image(Image.open('positive.png'))
-                st.error(f"Malignant (confidence: {probability*100:.1f}%)")
-            else:
-                st.image(Image.open('negative.png'))
-                st.success(f"Benign (confidence: {(1-probability)*100:.1f}%)")
-                
-        except Exception as e:
-            st.error(f"Prediction failed: {str(e)}")
-            st.code(f"Technical details: {type(e).__name__}: {e}")
+        st.success(breast_cancer_result)
 
 
 # ========== COVID-19 ==========
