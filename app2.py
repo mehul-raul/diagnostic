@@ -657,9 +657,71 @@ elif selected == 'Lung Cancer Prediction':
         except:
             st.error("❌ Please check inputs.")
 
+import gdown
+import os
+from tensorflow.keras.models import load_model
+
+# Path to save the model temporarily
+MODEL_PATH = "best_pneumonia_model.keras"
+
+@st.cache_resource
+def load_pneumonia_model():
+    # Only download if file doesn't exist
+    if not os.path.exists(MODEL_PATH):
+        file_id = "1GDou6cYjMoVoFCKbS-_3g2uWIiXiC5Fe"  # 🔁 Replace with your real file ID
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, MODEL_PATH, quiet=False)
+    
+    return load_model(MODEL_PATH)
+
+model = load_pneumonia_model()
+
+import streamlit as st
+import numpy as np
+from PIL import Image
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+
+# # ---- Load Model Once ----
+# @st.cache_resource
+# def load_pneumonia_model():
+#     return load_model("Frontend\\models\\best_pneumonia_model.keras")  # Adjust path if needed
+
+# model = load_pneumonia_model()
+
+# ---- Preprocessing ----
+def preprocess_image(image):
+    img = Image.open(image).convert('L')  # Grayscale
+    img = img.resize((256, 256))
+    img_array = np.array(img) / 255.0  # Normalize
+    img_array = np.expand_dims(img_array, axis=-1)  # (256, 256, 1)
+    img_array = np.expand_dims(img_array, axis=0)   # (1, 256, 256, 1)
+    return img_array
+
+# ---- Prediction ----
+def predict_pneumonia(model, image, threshold=0.5):
+    processed_img = preprocess_image(image)
+    prob = model.predict(processed_img)[0][0]
+    prediction = "🫁 Pneumonia" if prob > threshold else "✅ Normal"
+    confidence = f"{prob*100:.2f}%"
+    return prediction, confidence
+
+# ---- Streamlit UI ----
 if selected == 'Pneumonia Prediction':
-    st.header("Pneumonia Prediction from Xray Image")
-    st.subheader("COMING SOON :)")
+    st.header("Pneumonia Risk Assessment")
+    
+    uploaded_file = st.file_uploader("Upload a Chest X-Ray Image", type=["jpg", "jpeg", "png"])
+    
+    if uploaded_file is not None:
+        st.image(uploaded_file, caption="Uploaded Chest X-Ray", use_column_width=True)
+
+        prediction, confidence = predict_pneumonia(model, uploaded_file)
+
+        st.subheader("🔍 Diagnosis Result")
+        st.success(f"Prediction: **{prediction}**")
+        st.info(f"Model Confidence: {confidence}")
+    
+
     
 
 st.markdown("""
