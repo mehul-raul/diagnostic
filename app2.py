@@ -39,21 +39,11 @@ from streamlit_option_menu import option_menu
 from model_codes.DiseaseModel import DiseaseModel
 from model_codes.helper import prepare_symptoms_array
 # Load models
-from pickle import Unpickler
-import io
 
-class SafeUnpickler(Unpickler):
-    def find_class(self, module, name):
-        if module == 'numpy.core':
-            module = 'numpy'
-        return super().find_class(module, name)
-
-with open("models/breast_cancer.sav", 'rb') as f:
-    breast_cancer_model = SafeUnpickler(f).load()
 diabetes_model = joblib.load("models/diabetes_model.sav")
 heart_model = joblib.load("models/heart_disease_model.sav")
 liver_model = joblib.load("models/liver_model.sav")
-#breast_cancer_model = joblib.load("models/breast_cancer.sav")
+breast_cancer_model = joblib.load("models/breast_cancer.sav")
 covid_model = joblib.load("models/covid19_trained.pkl")
 lung_model = joblib.load("models/lung_trained.pkl")
 
