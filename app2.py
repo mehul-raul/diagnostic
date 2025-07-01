@@ -1,32 +1,4 @@
-# 1. Environment fixes FIRST
-import os
-os.environ['OMP_NUM_THREADS'] = '1'
-import numpy as np
-import sys
-from importlib import reload
 
-# 2. Permanent numpy fix
-def fix_numpy_core():
-    if not hasattr(np, '_core'):
-        sys.modules['numpy._core'] = sys.modules['numpy.core']
-        import numpy.core as core
-        sys.modules['numpy._core'] = core
-        np._core = core
-        reload(np)
-fix_numpy_core()
-
-# 3. Now load models safely
-from joblib import load
-
-try:
-    breast_cancer_model = load("models/breast_cancer_pb_model.sav")
-    print("Model loaded successfully!")
-except Exception as e:
-    print(f"Loading failed: {str(e)}")
-    # Fallback to legacy mode
-    with open("models/breast_cancer_pb_model.sav", 'rb') as f:
-        breast_cancer_model = load(f)
-        
 import streamlit as st
 st.set_page_config(
     page_title="TruDiagnosis",
@@ -71,7 +43,7 @@ from model_codes.helper import prepare_symptoms_array
 diabetes_model = joblib.load("models/diabetes_model.sav")
 heart_model = joblib.load("models/heart_disease_model.sav")
 liver_model = joblib.load("models/liver_model.sav")
-#breast_cancer_model = joblib.load("models/breast_cancer_pb_model.sav")
+breast_cancer_model = joblib.load("models/breast_cancer_pb_model.sav")
 covid_model = joblib.load("models/covid19_trained.pkl")
 lung_model = joblib.load("models/lung_trained.pkl")
 
