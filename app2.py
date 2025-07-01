@@ -674,7 +674,7 @@ elif selected == 'Breast Cancer Prediction':
                 np._core = np.core
 
             # 2. Load model (updated to handle dictionary format)
-            model_data = joblib.load("models/breast_cancer_pb_model.sav")
+            model_data = joblib.load("models/breast_cancer_new.sav")
             model = model_data['model'] if isinstance(model_data, dict) else model_data
 
             # 3. Prepare input with correct feature order
