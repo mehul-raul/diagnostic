@@ -43,7 +43,7 @@ from model_codes.helper import prepare_symptoms_array
 diabetes_model = joblib.load("models/diabetes_model.sav")
 heart_model = joblib.load("models/heart_disease_model.sav")
 liver_model = joblib.load("models/liver_model.sav")
-breast_cancer_model = joblib.load("models/breast_cancer_pb_model.sav")
+#breast_cancer_model = joblib.load("models/breast_cancer_pb_model.sav")
 covid_model = joblib.load("models/covid19_trained.pkl")
 lung_model = joblib.load("models/lung_trained.pkl")
 
