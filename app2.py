@@ -716,12 +716,14 @@ if selected == 'Pneumonia Prediction':
     if uploaded_file is not None:
         st.image(uploaded_file, caption="Uploaded Chest X-Ray", use_container_width=True)
     if st.button("Predict Lung Cancer"):
-        prediction, confidence = predict_pneumonia(model, uploaded_file)
+        try:
+            prediction, confidence = predict_pneumonia(model, uploaded_file)
 
-        st.subheader("🔍 Diagnosis Result")
-        st.success(f"Prediction: **{prediction}**")
-        st.info(f"Model Confidence: {confidence}")
-    
+            st.subheader("🔍 Diagnosis Result")
+            st.success(f"Prediction: **{prediction}**")
+            st.info(f"Model Confidence: {confidence}")
+        except:
+            st.error("❌ Please upload an image.")
 
     
 
