@@ -39,7 +39,12 @@ from streamlit_option_menu import option_menu
 from model_codes.DiseaseModel import DiseaseModel
 from model_codes.helper import prepare_symptoms_array
 # Load models
+import sys
 
+# Add this BEFORE loading any models
+if not hasattr(np, '_core'):
+    sys.modules['numpy._core'] = sys.modules['numpy.core']  # Maps old import path
+    np._core = np.core 
 diabetes_model = joblib.load("models/diabetes_model.sav")
 heart_model = joblib.load("models/heart_disease_model.sav")
 liver_model = joblib.load("models/liver_model.sav")
