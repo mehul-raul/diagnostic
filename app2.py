@@ -39,6 +39,7 @@ from streamlit_option_menu import option_menu
 from model_codes.DiseaseModel import DiseaseModel
 from model_codes.helper import prepare_symptoms_array
 # Load models
+import numpy as np
 import sys
 
 # Add this BEFORE loading any models
