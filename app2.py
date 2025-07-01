@@ -589,7 +589,7 @@ elif selected == 'Breast Cancer Prediction':
             'symmetry_worst': [symmetry_worst],
             'fractal_dimension_worst': [fractal_dimension_worst],
         })
-
+        breast_cancer_model = joblib.load("models/breast_cancer_pb_model.sav")
         # Perform prediction
         breast_cancer_prediction = breast_cancer_model.predict(user_input)
         # Display result
