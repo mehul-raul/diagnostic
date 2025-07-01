@@ -664,53 +664,67 @@ elif selected == 'Breast Cancer Prediction':
         fractal_dimension_worst = st.slider("Fractal Dimension Worst", 0.01, 0.2, 0.1)
 
     # Prediction section
-    if st.button("Predict Breast Cancer"):
+     if st.button("Predict Breast Cancer"):
         try:
-            # 1. Apply NumPy compatibility fix FIRST
+            # 1. Prepare input dictionary directly (NO eval())
+            input_dict = {
+                'radius_mean': [radius_mean],
+                'texture_mean': [texture_mean],
+                'perimeter_mean': [perimeter_mean],
+                'area_mean': [area_mean],
+                'smoothness_mean': [smoothness_mean],
+                'compactness_mean': [compactness_mean],
+                'concavity_mean': [concavity_mean],
+                'concave points_mean': [concave_points_mean],
+                'symmetry_mean': [symmetry_mean],
+                'fractal_dimension_mean': [fractal_dimension_mean],
+                'radius_se': [radius_se],
+                'texture_se': [texture_se],
+                'perimeter_se': [perimeter_se],
+                'area_se': [area_se],
+                'smoothness_se': [smoothness_se],
+                'compactness_se': [compactness_se],
+                'concavity_se': [concavity_se],
+                'concave points_se': [concave_points_se],
+                'symmetry_se': [symmetry_se],
+                'fractal_dimension_se': [fractal_dimension_se],
+                'radius_worst': [radius_worst],
+                'texture_worst': [texture_worst],
+                'perimeter_worst': [perimeter_worst],
+                'area_worst': [area_worst],
+                'smoothness_worst': [smoothness_worst],
+                'compactness_worst': [compactness_worst],
+                'concavity_worst': [concavity_worst],
+                'concave points_worst': [concave_points_worst],
+                'symmetry_worst': [symmetry_worst],
+                'fractal_dimension_worst': [fractal_dimension_worst]
+            }
+
+            # 2. Create DataFrame ensuring correct column order
+            user_input = pd.DataFrame(input_dict)[feature_order]
+            
+            # 3. Load model with NumPy compatibility fix
             import numpy as np
-            import sys
-            if not hasattr(np, '_core'):
-                sys.modules['numpy._core'] = sys.modules['numpy.core']
-                np._core = np.core
-
-            # 2. Load model (updated to handle dictionary format)
-            model_data = joblib.load("models/breast_cancer_new.sav")
-            model = model_data['model'] if isinstance(model_data, dict) else model_data
-
-            # 3. Prepare input with correct feature order
-            feature_order = [
-                'radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean',
-                'smoothness_mean', 'compactness_mean', 'concavity_mean',
-                'concave points_mean', 'symmetry_mean', 'fractal_dimension_mean',
-                'radius_se', 'texture_se', 'perimeter_se', 'area_se',
-                'smoothness_se', 'compactness_se', 'concavity_se',
-                'concave points_se', 'symmetry_se', 'fractal_dimension_se',
-                'radius_worst', 'texture_worst', 'perimeter_worst', 'area_worst',
-                'smoothness_worst', 'compactness_worst', 'concavity_worst',
-                'concave points_worst', 'symmetry_worst', 'fractal_dimension_worst'
-            ]
-
-            user_input = pd.DataFrame({
-                feature: [eval(feature)] for feature in feature_order
-            })
-
-            # 4. Make prediction
+            if not hasattr(np.random, 'MT19937'):
+                np.random.MT19937 = np.random.Generator(np.random.MT19937())
+            
+            model = joblib.load("models/breast_cancer_new.sav")
+            
+            # 4. Predict
             prediction = model.predict(user_input)
-            probability = model.predict_proba(user_input)[0][1]
-
-            # 5. Display results
+            proba = model.predict_proba(user_input)[0]
+            
+            # 5. Display
             if prediction[0] == 1:
-                image = Image.open('positive.png')
-                st.image(image, caption='')
-                st.error(f"Malignant (Confidence: {probability*100:.1f}%)")
+                st.image(Image.open('positive.png'))
+                st.error(f"Malignant ({(proba[1]*100):.1f}% confidence)")
             else:
-                image = Image.open('negative.png')
-                st.image(image, caption='')
-                st.success(f"Benign (Confidence: {(1-probability)*100:.1f}%)")
-
+                st.image(Image.open('negative.png'))
+                st.success(f"Benign ({(proba[0]*100):.1f}% confidence)")
+                
         except Exception as e:
             st.error(f"Prediction failed: {str(e)}")
-            st.warning("Please ensure: \n1. Model file exists \n2. All inputs are valid \n3. Dependencies are correct")
+            st.code(f"Technical details: {type(e).__name__}: {e}")
 
 
 # ========== COVID-19 ==========
