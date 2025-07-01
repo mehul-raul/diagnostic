@@ -38,6 +38,7 @@ from PIL import Image
 from streamlit_option_menu import option_menu
 from model_codes.DiseaseModel import DiseaseModel
 from model_codes.helper import prepare_symptoms_array
+RandomState.__bases__ = (MT19937,)
 # Load models
 diabetes_model = joblib.load("models/diabetes_model.sav")
 heart_model = joblib.load("models/heart_disease_model.sav")
