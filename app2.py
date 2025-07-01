@@ -703,7 +703,7 @@ def preprocess_image(image):
 def predict_pneumonia(model, image, threshold=0.5):
     processed_img = preprocess_image(image)
     prob = model.predict(processed_img)[0][0]
-    prediction = "🫁 Pneumonia" if prob > threshold else "✅ Normal"
+    prediction = "Pneumonia Detected" if prob > threshold else "✅ Normal"
     confidence = f"{prob*100:.2f}%"
     return prediction, confidence
 
